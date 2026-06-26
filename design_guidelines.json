@@ -1,0 +1,105 @@
+{
+  "theme_archetype": "Archetype 4: Swiss & High-Contrast (Modified for SaaS Productivity)",
+  "design_philosophy": "A highly functional, clear, and focused dashboard with 'Opinionated UI' and 'Progressive Disclosure'. Utilizes a deep navy structural anchor (sidebar) against a stark, breathable white main canvas. Tension is created through crisp 1px borders, generous negative space, and vibrant indigo data visualization. Inter is strictly banned for headings to avoid the 'default AI' look, replaced by the geometric sharpness of Outfit.",
+  "colors": {
+    "primary": {
+      "DEFAULT": "#6366F1",
+      "hover": "#4F46E5",
+      "foreground": "#FFFFFF"
+    },
+    "background": {
+      "main": "#FAFAFA",
+      "sidebar": "#0F172A",
+      "card": "#FFFFFF"
+    },
+    "text": {
+      "primary": "#020617",
+      "secondary": "#64748B",
+      "on_dark": "#F8FAFC",
+      "on_dark_muted": "#94A3B8"
+    },
+    "accents": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "danger": "#EF4444",
+      "heatmap_base": "#E2E8F0",
+      "heatmap_levels": ["#E0E7FF", "#C7D2FE", "#818CF8", "#4F46E5", "#312E81"]
+    },
+    "border": {
+      "light": "#E2E8F0",
+      "dark": "#1E293B"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "'Outfit', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "scale": {
+      "h1": "text-4xl sm:text-5xl font-bold tracking-tight text-slate-950",
+      "h2": "text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900",
+      "h3": "text-xl font-medium tracking-tight text-slate-800",
+      "h4": "text-lg font-medium text-slate-800",
+      "body": "text-base leading-relaxed text-slate-600",
+      "small": "text-sm text-slate-500",
+      "overline": "text-xs font-bold uppercase tracking-[0.2em] text-slate-400"
+    }
+  },
+  "layout_strategy": {
+    "structure": "Sidebar navigation on desktop (w-64, fixed, deep navy #0F172A), bottom tab bar on mobile (fixed bottom, white background). Main content area occupies remaining space with a soft off-white background (#FAFAFA).",
+    "spacing": "Generous spacing. Main content container uses p-6 md:p-10. Sections separated by gap-12 or mb-12. Card internal padding p-6 or p-8.",
+    "grid_system": "The 'Control Room' Grid for Dashboards: Base grid-cols-1 md:grid-cols-2 lg:grid-cols-4 with gap-6. Widgets stretch to fill height.",
+    "surfaces": "Cards use flat solid backgrounds (#FFFFFF) with a crisp 1px border (border-slate-200) and a very subtle shadow (shadow-sm). On hover, elevate slightly (-translate-y-1) and increase shadow to shadow-md."
+  },
+  "motion_interactions": {
+    "page_transitions": "Page entry fade-in + slide-up using Framer Motion (initial: opacity 0, y 20; animate: opacity 1, y 0; transition: duration 0.4, ease 'easeOut').",
+    "lists": "Staggered animations on list load (staggerChildren: 0.1).",
+    "data_viz": "Count-up animation for stat cards (using react-countup). Progress rings animate from 0 to value on view.",
+    "modals": "Scale-in/out for Add/Edit skill modals (initial: scale 0.95, opacity 0).",
+    "delight": "Confetti burst on goal completion (using canvas-confetti).",
+    "feedback": "Skeleton loaders for all data-fetching states. Toast notifications (Sonner) for CRUD operations."
+  },
+  "components": {
+    "navigation": {
+      "desktop_sidebar": "Deep navy background, white icons/text for active state, slate-400 for inactive. Includes user profile snippet at bottom.",
+      "mobile_bottom_bar": "White background, top border, 4-5 icon-only tabs, indigo active tint."
+    },
+    "dashboard_stats": "4 metric cards (e.g., Total Skills, Goals Met, Current Streak, Avg Proficiency). Large bold numbers (count-up) with a small trend indicator.",
+    "skill_cards": "Interactive cards displaying skill name, category badge, and a prominent circular progress ring (SVG with stroke-dashoffset animation).",
+    "charts": {
+      "library": "Recharts",
+      "styling": "Remove default grid lines or make them extremely faint (stroke-slate-100). Use the primary indigo and accent colors for bars/lines. Radar chart for skill categories. Tooltips must have dark background and white text for high contrast."
+    },
+    "heatmap": "GitHub-style grid using a series of small rounded-sm squares (w-3 h-3 or w-4 h-4), colored based on activity intensity using the heatmap_levels palette.",
+    "forms": "Use Shadcn primitives heavily customized. Inputs have 1px border, focus ring in indigo (focus:ring-indigo-500).",
+    "empty_states": "Centered layout, abstract/friendly illustration, muted text, and a clear prominent Indigo CTA button to add the first item."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure all text meets minimum 4.5:1 ratio. Indigo on white is highly accessible.",
+    "data_testid": "MANDATORY on all interactive elements. E.g., `data-testid='add-skill-button'`, `data-testid='skill-card-react'`, `data-testid='sidebar-nav-goals'`.",
+    "reduced_motion": "Wrap animations in a check for prefers-reduced-motion where applicable."
+  },
+  "media": {
+    "images": [
+      {
+        "category": "empty_state_background",
+        "url": "https://images.unsplash.com/photo-1605106702734-205df224ecce?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMHBhdHRlcm58ZW58MHx8fHwxNzgyNDA3MDY4fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Blue and white checkered abstract geometric pattern, use at very low opacity (5%) for empty state backgrounds or auth page."
+      },
+      {
+        "category": "user_avatar",
+        "url": "https://images.pexels.com/photos/36608621/pexels-photo-36608621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Smiling young student, to be used as a placeholder avatar in the sidebar and profile page."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: framer-motion, recharts, react-countup, canvas-confetti, lucide-react, sonner, html2pdf.js (for PDF export).",
+    "Set up Tailwind config with the specified colors (primary indigo, dark navy sidebar) and font families (Outfit for headings, Inter for body).",
+    "Implement the 'Control Room' grid for the dashboard (dense, info-rich).",
+    "Build the circular progress ring as a reusable component utilizing Framer Motion for the stroke-dashoffset.",
+    "For the heatmap, you can either implement a custom CSS grid of divs based on a mock data array of 365 days, or use 'react-activity-calendar' if preferred, styled with the indigo heatmap palette.",
+    "Ensure all Shadcn UI components (buttons, inputs, dialogs, dropdowns) are stripped of the default 'Vercel look' and styled with 1px slate-200 borders and no heavy shadows, matching the clean SaaS vibe.",
+    "ALWAYS apply data-testid attributes to buttons, form inputs, navigation links, and list items."
+  ]
+}

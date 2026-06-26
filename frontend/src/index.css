@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { background: #0B1120; }
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #0B1120;
+  color: #F1F5F9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: "Sora", "Space Grotesk", "Inter", sans-serif;
+  letter-spacing: -0.015em;
+}
+
+.stat-num, .font-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+@layer base {
+  :root {
+    /* Dark-first palette — ink navy primary surface */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+    --card: 222 30% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 30% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 41 87% 62%;      /* gold #F2B84B */
+    --primary-foreground: 222 47% 6%;
+    --secondary: 222 25% 16%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 222 25% 16%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 41 87% 62%;
+    --accent-foreground: 222 47% 6%;
+    --destructive: 12 100% 64%;  /* coral */
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 23% 18%;
+    --input: 217 23% 18%;
+    --ring: 41 87% 62%;
+    --radius: 0.625rem;
+  }
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+    --card: 222 30% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 30% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 41 87% 62%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 222 25% 16%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 222 25% 16%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 41 87% 62%;
+    --accent-foreground: 222 47% 6%;
+    --destructive: 12 100% 64%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 23% 18%;
+    --input: 217 23% 18%;
+    --ring: 41 87% 62%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+}
+
+/* Heatmap calendar overrides */
+.react-activity-calendar__count, .react-activity-calendar__legend-colors {
+  color: #94A3B8 !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+/* Shine sweep overlay for newly unlocked achievements */
+.shine-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(242,184,75,0.55) 50%, transparent 100%);
+  animation: shine-sweep 1.2s ease-out 1;
+  pointer-events: none;
+}
+
+/* prefers-reduced-motion: collapse all animations to near-instant */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
